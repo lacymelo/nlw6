@@ -43,21 +43,12 @@
 ---
 
 <h2 align="left">
-    🛠️ Biblioteca do expo para trabalhar com map
-</h2>
-
-<h3 align="justify" >
-    - expo install react-native-maps
-</h3>
-
----
-
-<h2 align="left">
     🛠️ Biblioteca do expo para utilizar fonts do google
 </h2>
 
 <h3 align="justify" >
-    - expo install expo-font @expo-google-fonts/nunito
+    - expo install expo-font @expo-google-fonts/inter <br/>
+    - expo install @expo-google-fonts/rajdhani
 </h3>
 
 ---
@@ -68,6 +59,46 @@
 
 <h3 align="justify" >
     - yarn add expo-app-loading
+</h3>
+
+---
+
+<h2 align="left">
+    🛠️ Biblioteca que fornece uma visualização nativa do React que faz a transição entre várias cores em uma direção linear
+</h2>
+
+<h3 align="justify" >
+    - expo install expo-linear-gradient
+</h3>
+
+---
+
+<h2 align="left">
+    🛠️ Biblioteca para considerar o margin top no iphone 
+</h2>
+
+<h3 align="justify" >
+    - yarn add react-native-iphone-x-helper
+</h3>
+
+---
+
+<h2 align="left">
+    🛠️ Biblioteca para o react native entender *svg
+</h2>
+
+<h3 align="justify" >
+    - expo install react-native-svg
+</h3>
+
+---
+
+<h2 align="left">
+    🛠️ Biblioteca para utilizar svg como component
+</h2>
+
+<h3 align="justify" >
+    - yarn add --dev react-native-svg-transformer
 </h3>
 
 ---
