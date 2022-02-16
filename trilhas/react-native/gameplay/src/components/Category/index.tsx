@@ -9,28 +9,38 @@ import { theme } from "../../global/styles/theme";
 type Props = TouchableOpacityProps & {
     title: string;
     icon: React.FC<SvgProps>;
+    hasCheckBox?: boolean;
     checked?: boolean;
 }
 
-const Category: React.FC<Props> = ({ title, icon: Icon, checked, ...rest }) => {
-    const { secondary50, secondary70 } = theme.colors;
+const Category: React.FC<Props> = ({ title, icon: Icon, checked, hasCheckBox, ...rest }) => {
+    const { secondary40, secondary50, secondary70, secondary85 } = theme.colors;
 
     return (
-        <LinearGradient
-            style={styles.container}
-            colors={
-                [secondary50, secondary70]
-            }
+        <TouchableOpacity
+            {...rest}
         >
-            <TouchableOpacity
-                {...rest}
+            <LinearGradient
+                style={styles.container}
+                colors={
+                    [secondary50, secondary70]
+                }
             >
-                <View
+
+                <LinearGradient
                     style={[
-                        styles.content, { opacity: checked ? 1 : 0.4 }
+                        styles.content, { opacity: checked ? 1 : 0.5 }
+                    ]}
+                    colors={[
+                        checked ? secondary85 : secondary40, secondary50
                     ]}
                 >
-                    <View style={checked ? styles.checked : styles.check} />
+                    {
+                        hasCheckBox && (
+                            <View style={checked ? styles.checked : styles.check} />
+                        )
+                    }
+
                     <Icon
                         width={48}
                         height={48}
@@ -39,9 +49,9 @@ const Category: React.FC<Props> = ({ title, icon: Icon, checked, ...rest }) => {
                     <Text style={styles.title}>
                         {title}
                     </Text>
-                </View>
-            </TouchableOpacity>
-        </LinearGradient>
+                </LinearGradient>
+            </LinearGradient>
+        </TouchableOpacity>
     );
 }
 

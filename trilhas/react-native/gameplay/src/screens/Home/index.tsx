@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
 import { View, Text, Image, FlatList } from "react-native";
 import styles from './styles';
 
@@ -11,8 +13,17 @@ import ListHeader from "../../components/ListHeader";
 import Appointments from "../../components/Appointment";
 import ListDivider from "../../components/ListDivider";
 
+import { RootStackParamList } from "../../components/RouteParamsList";
+
+type NavigateProp = NativeStackNavigationProp<
+  RootStackParamList
+>;
+
+
 const Home = () => {
+    const { navigate } = useNavigation<NavigateProp>();
     const [category, setCategory] = useState('');
+
 
     const appointments = [
         {
@@ -56,6 +67,12 @@ const Home = () => {
         }
     ];
 
+    function handleAppointmentDetails(appointmentId: number){
+        navigate('AppointmentDetails', {
+            id: appointmentId
+        });
+    }
+
     function handleCategorySelect(categoryId: String) {
         categoryId === category ? setCategory('') : setCategory(String(categoryId));
     }
@@ -71,6 +88,7 @@ const Home = () => {
             <CategorySelect
                 categorySelected={category}
                 setCategory={handleCategorySelect}
+                hasCheckBox={true}
             />
 
             <View style={styles.content}>
@@ -87,7 +105,7 @@ const Home = () => {
                 keyExtractor={item => item.id}
                 ItemSeparatorComponent={() => <ListDivider />}
                 renderItem={({ item }) => (
-                    <Appointments data={item} />
+                    <Appointments data={item} onPress={() => handleAppointmentDetails(Number(item.id))} />
                 )}
             />
         </Background>
