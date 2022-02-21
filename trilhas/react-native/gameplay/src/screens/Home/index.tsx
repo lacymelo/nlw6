@@ -73,6 +73,10 @@ const Home = () => {
         });
     }
 
+    function handleAppointmentCreate(){
+        navigate('AppointmentCreate');
+    }
+
     function handleCategorySelect(categoryId: String) {
         categoryId === category ? setCategory('') : setCategory(String(categoryId));
     }
@@ -82,13 +86,13 @@ const Home = () => {
             <View style={styles.header}>
                 <Profile />
 
-                <ButtonAdd />
+                <ButtonAdd onPress={handleAppointmentCreate} />
             </View>
 
             <CategorySelect
                 categorySelected={category}
                 setCategory={handleCategorySelect}
-                hasCheckBox={true}
+                hasCheckBox
             />
 
             <View style={styles.content}>

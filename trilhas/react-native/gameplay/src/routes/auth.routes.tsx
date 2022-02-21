@@ -7,7 +7,9 @@ const Stack = createNativeStackNavigator();
 import SignIn from "../screens/SignIn";
 import Home from "../screens/Home";
 import AppointmentDetails from "../screens/AppointmentDetails";
+import AppointmentCreate from "../screens/AppointmentCreate";
 import { theme } from "../global/styles/theme";
+import Header from "../components/Header";
 
 const AuthRoutes = () => {
     return(
@@ -30,6 +32,15 @@ const AuthRoutes = () => {
             <Stack.Screen
                 name="AppointmentDetails"
                 component={AppointmentDetails}
+            />
+
+            <Stack.Screen
+                name="AppointmentCreate"
+                component={AppointmentCreate}
+                options={{
+                    headerShown: true,
+                    header: () => <Header title="Agendar Partida"/>
+                }}
             />
         </Stack.Navigator>
     );

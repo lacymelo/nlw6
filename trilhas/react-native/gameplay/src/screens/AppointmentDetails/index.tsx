@@ -19,7 +19,7 @@ interface Params{
     id: number;
 }
 
-const AppointmentDetails = () => {
+const AppointmentCreate = () => {
     const route = useRoute();
     const routeParams = route.params as Params;
     const { id } = routeParams;
@@ -39,9 +39,9 @@ const AppointmentDetails = () => {
         }
     ]
 
-    useEffect(() => {
-        console.log(id);
-    }, [id]);
+    // useEffect(() => {
+    //     console.log(id);
+    // }, [id]);
 
 
     return (
@@ -97,4 +97,4 @@ const AppointmentDetails = () => {
     );
 }
 
-export default AppointmentDetails;
+export default AppointmentCreate;
