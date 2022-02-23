@@ -7,13 +7,9 @@ import CalenderSvg from '../../assets/calendar.svg';
 import GuildIcon from "../GuildIcon";
 import { categories } from "../../utils/categories";
 import { theme } from "../../global/styles/theme";
+import { GuildProps } from "../Guild";
+import { LinearGradient } from "expo-linear-gradient";
 
-export type GuildProps = {
-    id: string,
-    name: string,
-    icon: string
-    owner: boolean;
-}
 
 export type AppointmentsProps = {
     id: string;
@@ -29,7 +25,7 @@ type Props = TouchableOpacityProps & {
 
 const Appointments: React.FC<Props> = ({ data, ...rest }) => {
     const [category] = categories.filter(item => item.id === data.category);
-    const { primary, on } = theme.colors;
+    const { primary, on, secondary50, secondary70 } = theme.colors;
     const { name, owner, icon } = data.guild;
 
     return(
@@ -37,7 +33,12 @@ const Appointments: React.FC<Props> = ({ data, ...rest }) => {
             {...rest}
             >
             <View style={styles.container}>
-                <GuildIcon urlImg={icon}/>
+                <LinearGradient
+                    style={styles.guildIconContainer}
+                    colors={[secondary50, secondary70]}
+                >
+                    <GuildIcon urlImg={icon}/>
+                </LinearGradient>
 
                 <View style={styles.content}>
                     <View style={styles.header}>

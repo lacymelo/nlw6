@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     },
 
     guilds: {
-        
+        width: '100%',
     }
 });
 

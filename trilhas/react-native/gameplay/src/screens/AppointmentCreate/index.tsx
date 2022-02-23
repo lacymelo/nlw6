@@ -21,18 +21,19 @@ import ModalView from "../../components/ModalView";
 import Guilds from "../Guilds";
 import { GuildProps } from "../../components/Guild";
 import GuildIcon from "../../components/GuildIcon";
+import Background from "../../components/Background";
 
 const AppointmentDetails = () => {
     const [category, setCategory] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
     const [guild, setGuild] = useState<GuildProps>({} as GuildProps)
 
-    function handleOpenGuilds(){
+    function handleGuilds(){
         setModalVisible(!modalVisible);
     }
 
     function handleCategorySelect(categoryId: String) {
-        categoryId === category ? setCategory('') : setCategory(String(categoryId));
+        setCategory(String(categoryId));
     }
 
     function handleGuildSelect(guildSelect: GuildProps){
@@ -46,112 +47,120 @@ const AppointmentDetails = () => {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.container}
         >
-            <ScrollView>
-                <Text style={[
-                    styles.label,
-                    styles.labelContent
-                ]}>
-                    Categoria
-                </Text>
+            <Background>
+                <ScrollView>
+                    <Text style={[
+                        styles.label,
+                        styles.labelContent
+                    ]}>
+                        Categoria
+                    </Text>
 
-                <CategorySelect
-                    hasCheckBox
-                    setCategory={handleCategorySelect}
-                    categorySelected={category}
-                />
-
-                <View style={styles.form}>
-                    <TouchableOpacity onPress={handleOpenGuilds}>
-                        <View style={styles.select}>
-                            {
-                                guild.icon ? 
-                                    <GuildIcon urlImg={guild.icon}/>
-                                :
-                                    <View
-                                        style={styles.image}
-                                    />
-                            }
-
-                            <View style={styles.selectBody}>
-                                <Text style={styles.label}>
-                                    { guild.name ? guild.name : 'Selecione um servidor' }
-                                </Text>
-                            </View>
-
-                            <Feather
-                                name="chevron-right"
-                                color={theme.colors.heading}
-                                size={18}
-                            />
-                        </View>
-                    </TouchableOpacity>
-
-                    <View style={styles.field}>
-                        <View>
-                            <Text style={styles.label}>
-                                Dia e mês
-                            </Text>
-
-
-                            <View style={styles.column}>
-                                <SmallInput maxLength={2} />
-
-                                <Text style={styles.divider}>
-                                    /
-                                </Text>
-
-                                <SmallInput maxLength={2} />
-                            </View>
-                        </View>
-
-                        <View>
-                            <Text style={styles.label}>
-                                Hora e minuto
-                            </Text>
-
-
-                            <View style={styles.column}>
-                                <SmallInput maxLength={2} />
-
-                                <Text style={styles.divider}>
-                                    :
-                                </Text>
-
-                                <SmallInput maxLength={2} />
-                            </View>
-                        </View>
-
-                    </View>
-
-                    <View
-                        style={[styles.field, { marginBottom: 12 }]}>
-                        <Text style={styles.label}>
-                            Descrição
-                        </Text>
-
-                        <Text style={styles.caracteresLimit}>
-                            Max 100 caracteres
-                        </Text>
-                    </View>
-
-                    <TextArea
-                        multiline
-                        maxLength={100}
-                        numberOfLines={5}
-                        autoCorrect={false}
+                    <CategorySelect
+                        hasCheckBox
+                        setCategory={handleCategorySelect}
+                        categorySelected={category}
                     />
 
-                    <View style={styles.footer}>
-                        <Button
-                            title="Agendar"
-                            activeOpacity={0.8}
+                    <View style={styles.form}>
+                        <TouchableOpacity onPress={handleGuilds}>
+                            <View style={styles.select}>
+                                {
+                                    guild.icon ? 
+                                        <GuildIcon urlImg={guild.icon}/>
+                                    :
+                                        <View
+                                            style={styles.image}
+                                        />
+                                }
+
+                                <View style={styles.selectBody}>
+                                    <Text style={styles.label}>
+                                        { guild.name ? guild.name : 'Selecione um servidor' }
+                                    </Text>
+                                </View>
+
+                                <Feather
+                                    name="chevron-right"
+                                    color={theme.colors.heading}
+                                    size={18}
+                                />
+                            </View>
+                        </TouchableOpacity>
+
+                        <View style={styles.field}>
+                            <View>
+                                <Text style={[
+                                    styles.label,
+                                    {marginBottom: 12}
+                                    ]}>
+                                    Dia e mês
+                                </Text>
+
+
+                                <View style={styles.column}>
+                                    <SmallInput maxLength={2} />
+
+                                    <Text style={styles.divider}>
+                                        /
+                                    </Text>
+
+                                    <SmallInput maxLength={2} />
+                                </View>
+                            </View>
+
+                            <View>
+                                <Text style={[
+                                    styles.label,
+                                    {marginBottom: 12}
+                                    ]}>
+                                    Hora e minuto
+                                </Text>
+
+
+                                <View style={styles.column}>
+                                    <SmallInput maxLength={2} />
+
+                                    <Text style={styles.divider}>
+                                        :
+                                    </Text>
+
+                                    <SmallInput maxLength={2} />
+                                </View>
+                            </View>
+
+                        </View>
+
+                        <View
+                            style={[styles.field, { marginBottom: 12 }]}>
+                            <Text style={styles.label}>
+                                Descrição
+                            </Text>
+
+                            <Text style={styles.caracteresLimit}>
+                                Max 100 caracteres
+                            </Text>
+                        </View>
+
+                        <TextArea
+                            multiline
+                            maxLength={100}
+                            numberOfLines={5}
+                            autoCorrect={false}
                         />
+
+                        <View style={styles.footer}>
+                            <Button
+                                title="Agendar"
+                                activeOpacity={0.8}
+                            />
+                        </View>
                     </View>
-                </View>
-            </ScrollView>
+                </ScrollView>
+            </Background>
 
 
-            <ModalView visible={modalVisible}>
+            <ModalView closeModal={handleGuilds} visible={modalVisible}>
                 <Guilds handleGuildSelect={handleGuildSelect}/>
             </ModalView>
         </KeyboardAvoidingView>

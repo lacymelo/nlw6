@@ -32,9 +32,11 @@ const Guilds: React.FC<Props> = ({ handleGuildSelect }) => {
             <FlatList
                 data={guilds}
                 keyExtractor={item => item.id}
-                ItemSeparatorComponent={ListDivider}
+                ItemSeparatorComponent={() => <ListDivider isCentered/>}
+                ListHeaderComponent={() => <ListDivider isCentered/>}
                 showsVerticalScrollIndicator={false}
                 style={styles.guilds}
+                contentContainerStyle={{ paddingBottom: 69, paddingTop: 103 }}
                 renderItem={({item}) => (
                     <Guild data={item} onPress={() => handleGuildSelect(item)} />
                 )}

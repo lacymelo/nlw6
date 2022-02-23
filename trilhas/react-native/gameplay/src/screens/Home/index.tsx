@@ -95,12 +95,10 @@ const Home = () => {
                 hasCheckBox
             />
 
-            <View style={styles.content}>
-                <ListHeader
-                    title="Partidas agendadas"
-                    subtitle="Total 6"
-                />
-            </View>
+            <ListHeader
+                title="Partidas agendadas"
+                subtitle="Total 6"
+            />
 
             <FlatList
                 style={styles.matches}
@@ -108,6 +106,7 @@ const Home = () => {
                 data={appointments}
                 keyExtractor={item => item.id}
                 ItemSeparatorComponent={() => <ListDivider />}
+                contentContainerStyle={{ paddingBottom: 69 }}
                 renderItem={({ item }) => (
                     <Appointments data={item} onPress={() => handleAppointmentDetails(Number(item.id))} />
                 )}

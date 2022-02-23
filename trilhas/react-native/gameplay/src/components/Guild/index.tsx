@@ -24,6 +24,7 @@ const Guild: React.FC<Props> = ({ data, ...rest }) => {
             activeOpacity={0.7}
             {...rest}
         >  
+
             <GuildIcon urlImg={data.icon}/> 
 
             <View style={styles.content}>
