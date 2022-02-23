@@ -6,7 +6,6 @@ import {
     ScrollView, 
     KeyboardAvoidingView, 
     Platform,
-    Modal,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
@@ -21,7 +20,6 @@ import ModalView from "../../components/ModalView";
 import Guilds from "../Guilds";
 import { GuildProps } from "../../components/Guild";
 import GuildIcon from "../../components/GuildIcon";
-import Background from "../../components/Background";
 
 const AppointmentDetails = () => {
     const [category, setCategory] = useState('');
@@ -47,7 +45,7 @@ const AppointmentDetails = () => {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.container}
         >
-            <Background>
+            <>
                 <ScrollView>
                     <Text style={[
                         styles.label,
@@ -157,7 +155,7 @@ const AppointmentDetails = () => {
                         </View>
                     </View>
                 </ScrollView>
-            </Background>
+            </>
 
 
             <ModalView closeModal={handleGuilds} visible={modalVisible}>

@@ -82,7 +82,7 @@ const Home = () => {
     }
 
     return (
-        <Background>
+        <>
             <View style={styles.header}>
                 <Profile />
 
@@ -111,7 +111,7 @@ const Home = () => {
                     <Appointments data={item} onPress={() => handleAppointmentDetails(Number(item.id))} />
                 )}
             />
-        </Background>
+        </>
     );
 }
 
