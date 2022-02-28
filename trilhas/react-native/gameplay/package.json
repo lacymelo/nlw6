@@ -24,6 +24,7 @@
     "expo-auth-session": "~3.5.0",
     "expo-font": "~10.0.4",
     "expo-linear-gradient": "~11.0.3",
+    "expo-linking": "^3.0.0",
     "expo-random": "~12.1.1",
     "expo-status-bar": "~1.2.0",
     "react": "17.0.1",
@@ -34,6 +35,7 @@
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-svg": "12.1.1",
+    "react-native-uuid": "^2.0.1",
     "react-native-web": "0.17.1"
   },
   "devDependencies": {

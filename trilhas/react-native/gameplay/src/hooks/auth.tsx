@@ -2,13 +2,18 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 import * as AuthSession from 'expo-auth-session';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// import {
-// } from '../configs';
-const { SCOPE } = process.env;
-const { CLIENT_ID } = process.env;
-const { CDN_IMAGE } = process.env;
-const { REDIRECT_URI } = process.env;
-const { RESPONSE_TYPE } = process.env;
+import {
+    SCOPE,
+    CLIENT_ID,
+    CDN_IMAGE,
+    REDIRECT_URI,
+    RESPONSE_TYPE
+} from '../configs';
+// const { SCOPE } = process.env;
+// const { CLIENT_ID } = process.env;
+// const { CDN_IMAGE } = process.env;
+// const { REDIRECT_URI } = process.env;
+// const { RESPONSE_TYPE } = process.env;
 
 import api from '../services/api';
 import { COLLECTION_USER } from '../configs/database';
@@ -26,6 +31,7 @@ type AuthContextData = {
     user: User;
     loading: boolean;
     signIn: () => Promise<void>;
+    singOut: () => Promise<void>;
 }
 
 type AuthProviderProps = {
@@ -45,6 +51,12 @@ function AuthProvider({ children }: AuthProviderProps){
     const [user, setUser] = useState<User>({} as User);
 
     const [loading, setLoading] = useState(false);
+
+    async function singOut() {
+        setUser({} as User);
+
+        await AsyncStorage.removeItem(COLLECTION_USER);
+    }
 
     async function signIn(){
         try {
@@ -103,6 +115,7 @@ function AuthProvider({ children }: AuthProviderProps){
         <AuthContext.Provider
             value={{
                 user,
+                singOut,
                 signIn,
                 loading,
             }}

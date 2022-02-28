@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { View, Text, Image, FlatList } from "react-native";
 import styles from './styles';
 
 //componentes
-import Background from '../../components/Background';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Profile from "../../components/Profile";
 import ButtonAdd from "../../components/ButtonAdd";
 import CategorySelect from "../../components/CategorySelect";
 import ListHeader from "../../components/ListHeader";
-import Appointments from "../../components/Appointment";
+import Appointments, { AppointmentsProps } from "../../components/Appointment";
 import ListDivider from "../../components/ListDivider";
 
 import { RootStackParamList } from "../../components/RouteParamsList";
+import { COLLECTION_APPOINTMENTS } from "../../configs/database";
+import Load from "../../components/Load";
+import ModalLogout from "../../components/ModalLogout";
 
 type NavigateProp = NativeStackNavigationProp<
   RootStackParamList
@@ -22,54 +25,32 @@ type NavigateProp = NativeStackNavigationProp<
 
 const Home = () => {
     const { navigate } = useNavigation<NavigateProp>();
+    const [modalVisible, setModalVisible] = useState(false);
+    const [ appointments, setAppointments ] = useState<AppointmentsProps[]>([]);
     const [category, setCategory] = useState('');
+    const [loading, setLoading] = useState(true);
 
+    useFocusEffect(useCallback(() => {
+        loadAppointments();
+    }, [category]));
 
-    const appointments = [
-        {
-            id: '1',
-            guild: {
-                id: '1',
-                name: 'Lendários',
-                icon: 'https://avatars.githubusercontent.com/u/89089202?v=4',
-                owner: true
-            },
+    async function loadAppointments() {
+        const response = await AsyncStorage.getItem(COLLECTION_APPOINTMENTS);
 
-            category: '1',
-            date: '22/06 às 20:40',
-            description: 'É hoje que vamos chegar ao challenger sem perder uma partida da md10.'
-        },
-        {
-            id: '2',
-            guild: {
-                id: '2',
-                name: 'Lendários',
-                icon: 'https://avatars.githubusercontent.com/u/12619438?v=4',
-                owner: false
-            },
+        const storage: AppointmentsProps[] = response ? JSON.parse(response) : [];
 
-            category: '1',
-            date: '22/06 às 20:40',
-            description: 'É hoje que vamos chegar ao challenger sem perder uma partida da md10.'
-        },
-        {
-            id: '3',
-            guild: {
-                id: '3',
-                name: 'Lendários',
-                icon: 'https://avatars.githubusercontent.com/u/89089202?v=4',
-                owner: true
-            },
-
-            category: '1',
-            date: '22/06 às 20:40',
-            description: 'É hoje que vamos chegar ao challenger sem perder uma partida da md10.'
+        if(category){
+            setAppointments(storage.filter(item => item.category === category));
+        }else{
+            setAppointments(storage);
         }
-    ];
 
-    function handleAppointmentDetails(appointmentId: number){
+        setLoading(false);
+    };
+
+    function handleAppointmentDetails(guildSelect: AppointmentsProps){
         navigate('AppointmentDetails', {
-            id: appointmentId
+            guildSelected: guildSelect
         });
     }
 
@@ -81,10 +62,14 @@ const Home = () => {
         categoryId === category ? setCategory('') : setCategory(String(categoryId));
     }
 
+    function handleModal(){
+        setModalVisible(!modalVisible);
+    }
+
     return (
         <>
             <View style={styles.header}>
-                <Profile />
+                <Profile handleModalSingOut={handleModal} />
 
                 <ButtonAdd onPress={handleAppointmentCreate} />
             </View>
@@ -95,22 +80,29 @@ const Home = () => {
                 hasCheckBox
             />
 
-            <ListHeader
-                title="Partidas agendadas"
-                subtitle="Total 6"
-            />
+            {
+            loading ? <Load />:
+                <>                
+                    <ListHeader
+                        title="Partidas agendadas"
+                        subtitle={`Total ${appointments.length}`}
+                    />
+        
+                    <FlatList
+                        style={styles.matches}
+                        showsVerticalScrollIndicator={false}
+                        data={appointments}
+                        keyExtractor={item => item.id}
+                        ItemSeparatorComponent={() => <ListDivider />}
+                        contentContainerStyle={{ paddingBottom: 69 }}
+                        renderItem={({ item }) => (
+                            <Appointments data={item} onPress={() => handleAppointmentDetails(item)} />
+                        )}
+                    />
+                </>
+            }
 
-            <FlatList
-                style={styles.matches}
-                showsVerticalScrollIndicator={false}
-                data={appointments}
-                keyExtractor={item => item.id}
-                ItemSeparatorComponent={() => <ListDivider />}
-                contentContainerStyle={{ paddingBottom: 69 }}
-                renderItem={({ item }) => (
-                    <Appointments data={item} onPress={() => handleAppointmentDetails(Number(item.id))} />
-                )}
-            />
+            <ModalLogout closeModal={handleModal} visible={modalVisible}/>
         </>
     );
 }

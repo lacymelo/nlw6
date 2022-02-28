@@ -37,7 +37,7 @@ const Appointments: React.FC<Props> = ({ data, ...rest }) => {
                     style={styles.guildIconContainer}
                     colors={[secondary50, secondary70]}
                 >
-                    <GuildIcon urlImg={icon}/>
+                    <GuildIcon guildId={data.guild.id} iconId={data.guild.icon}/>
                 </LinearGradient>
 
                 <View style={styles.content}>

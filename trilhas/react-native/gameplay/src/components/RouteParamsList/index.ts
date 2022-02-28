@@ -1,7 +1,9 @@
+import { AppointmentsProps } from "../Appointment";
+
 export type RootStackParamList = {
     Home: undefined;
     AppointmentDetails: {
-        id: number;
+        guildSelected: AppointmentsProps;
     };
     AppointmentCreate: undefined;
 };

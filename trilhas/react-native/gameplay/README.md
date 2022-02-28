@@ -139,6 +139,7 @@
 
 <h3 align="justify" >
     - yarn add dotenv babel-plugin-inline-dotenv
+</h3>
 
 ---
 
@@ -147,6 +148,30 @@
 </h2>
 
 <h3 align="justify" >
-    - expo install @react-native-async-storage/async-storage 
+    - expo install @react-native-async-storage/async-storage
+</h3>
+
+---
+
+<h2 align="left">
+    🛠️ Biblioteca para gerar id
+</h2>
+
+<h3 align="justify" >
+    - yarn add react-native-uuid
+</h3>
+
+---
+
+<h2 align="left">
+    🛠️ Biblioteca para redirecionar
+</h2>
+
+<h3 align="justify" >
+    - yarn add expo-linking
+</h3>
+
+---
+
 
 

@@ -1,16 +1,22 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity, Alert, ModalProps } from "react-native";
 import { useAuth } from "../../hooks/auth";
 import Avatar from "../Avatar";
 import styles from './styles';
 
-const Profile = () => {
-    const { user } = useAuth();
+type PropLogout = ModalProps & {
+    handleModalSingOut: () => void
+}
+
+const Profile: React.FC<PropLogout> = ({ handleModalSingOut }) => {
+    const { user, singOut } = useAuth();
     const { firstName, avatar } = user; 
 
     return(
         <View style={styles.container}>
-            <Avatar urlImage={avatar}/>
+            <TouchableOpacity activeOpacity={0.7} onPress={handleModalSingOut}>
+                <Avatar urlImage={avatar}/>
+            </TouchableOpacity>
 
             <View>
                 <View style={styles.user}>
