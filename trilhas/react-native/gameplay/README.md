@@ -131,4 +131,22 @@
     - yarn add axios
 </h3>
 
+---
+
+<h2 align="left">
+    🛠️ Biblioteca que permite a aplicação o acesso as variáveis de ambiente
+</h2>
+
+<h3 align="justify" >
+    - yarn add dotenv babel-plugin-inline-dotenv
+
+---
+
+<h2 align="left">
+    🛠️ Biblioteca para armazenar uma informação no dispositivo do usuário
+</h2>
+
+<h3 align="justify" >
+    - expo install @react-native-async-storage/async-storage 
+
 

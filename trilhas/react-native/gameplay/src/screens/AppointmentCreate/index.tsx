@@ -63,14 +63,7 @@ const AppointmentDetails = () => {
                     <View style={styles.form}>
                         <TouchableOpacity onPress={handleGuilds}>
                             <View style={styles.select}>
-                                {
-                                    guild.icon ? 
-                                        <GuildIcon urlImg={guild.icon}/>
-                                    :
-                                        <View
-                                            style={styles.image}
-                                        />
-                                }
+                                {<GuildIcon guildId={guild.id} iconId={guild.icon}/>}
 
                                 <View style={styles.selectBody}>
                                     <Text style={styles.label}>

@@ -9,7 +9,7 @@ import { theme } from "../../global/styles/theme";
 export type GuildProps = {
     id: string;
     name: string;
-    icon: string;
+    icon: string | null;
     owner: boolean;
 }
 
@@ -24,8 +24,8 @@ const Guild: React.FC<Props> = ({ data, ...rest }) => {
             activeOpacity={0.7}
             {...rest}
         >  
-
-            <GuildIcon urlImg={data.icon}/> 
+            <GuildIcon guildId={data.id} iconId={data.icon}/>
+             
 
             <View style={styles.content}>
                 <View>

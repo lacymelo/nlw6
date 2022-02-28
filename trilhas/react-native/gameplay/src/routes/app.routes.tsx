@@ -10,7 +10,7 @@ import AppointmentCreate from "../screens/AppointmentCreate";
 import { theme } from "../global/styles/theme";
 import Header from "../components/Header";
 
-const AuthRoutes = () => {
+const AppRoutes = () => {
     return(
         <Stack.Navigator
             screenOptions={{
@@ -40,4 +40,4 @@ const AuthRoutes = () => {
     );
 }
 
-export default AuthRoutes;
+export default AppRoutes;
