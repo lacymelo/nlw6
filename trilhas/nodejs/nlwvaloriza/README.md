@@ -133,6 +133,16 @@
 ---
 
 <h2 align="left">
+    🛠️ Biblioteca para verificar erros na api
+</h2>
+
+<h3 align="justify" >
+    - yarn add express-async-errors
+</h3>
+
+---
+
+<h2 align="left">
     🛠️ Biblioteca multer para que o express entenda form data
 </h2>
 
@@ -150,16 +160,6 @@
 <h3 align="justify" >
     - yarn add cors
     - yarn add @types/cors -D
-</h3>
-
----
-
-<h2 align="left">
-    🛠️ Biblioteca para verificar erros na api
-</h2>
-
-<h3 align="justify" >
-    - yarn add express-async-errors
 </h3>
 
 ---
