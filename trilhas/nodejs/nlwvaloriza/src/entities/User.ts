@@ -1,4 +1,4 @@
-import {Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn} from "typeorm";
+import {Entity, PrimaryColumn, Column, CreateDateColumn} from "typeorm";
 import { v4 as uuid } from 'uuid';
 
 //referenciando a tabela de usuários
@@ -19,6 +19,9 @@ class User {
 
     @Column()
     admin: boolean;
+
+    @Column()
+    password: string;
 
     @CreateDateColumn()
     created_at: Date;

@@ -90,7 +90,6 @@
 
 ---
 
-
 <h2 align="left">
     🛠️ Comando para executar as migrations
 </h2>
@@ -138,6 +137,28 @@
 
 <h3 align="justify" >
     - yarn add express-async-errors
+</h3>
+
+---
+
+<h2 align="left">
+    🛠️ Biblioteca para validação de um usuário
+</h2>
+
+<h3 align="justify" >
+    - yarn add jsonwebtoken
+    - yarn add @types/jsonwebtoken -D
+</h3>
+
+---
+
+<h2 align="left">
+    🛠️ Biblioteca para criptografar senha
+</h2>
+
+<h3 align="justify" >
+    - yarn add bcryptjs
+    - yarn add @types/bcryptjs -D
 </h3>
 
 ---
