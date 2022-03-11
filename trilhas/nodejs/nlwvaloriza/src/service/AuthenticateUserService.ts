@@ -2,8 +2,7 @@ import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { getCustomRepository } from "typeorm";
 import { UsersRepositories } from "../repositories/UsersRepositories";
-
-
+require('dotenv').config();
 interface IAuthenticateUserRequest {
     email: string;
     password: string;
@@ -31,7 +30,7 @@ class AuthenticateUserService {
         const token = sign({
             email: user.email
 
-        }, "76b543b67e75d2aa9169f772416abf17", {
+        }, process.env.KEY_SECRET, {
             subject: user.id,
             expiresIn: "1d"
         });

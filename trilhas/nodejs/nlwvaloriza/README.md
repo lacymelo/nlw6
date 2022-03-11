@@ -164,12 +164,11 @@
 ---
 
 <h2 align="left">
-    🛠️ Biblioteca multer para que o express entenda form data
+    🛠️ Biblioteca que permite que você transforme um objeto simples em alguma instância de classe e vice-versa. 
 </h2>
 
 <h3 align="justify" >
-    - yarn add multer
-    - yarn add @types/multer -D
+    - yarn add class-transformer
 </h3>
 
 ---
@@ -181,6 +180,16 @@
 <h3 align="justify" >
     - yarn add cors
     - yarn add @types/cors -D
+</h3>
+
+---
+
+<h2 align="left">
+    🛠️ Biblioteca para gerenciar variáveis de ambiente
+</h2>
+
+<h3 align="justify" >
+    - yarn add dotenv
 </h3>
 
 ---
