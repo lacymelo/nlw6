@@ -5,7 +5,7 @@
 
 
 <h2 align="left">💻 Comando para criar o projeto</h2>
-<h3 align="justify"> - yarn init -y</h3>
+<h3 align="justify"> - yarn init -y </h3>
 
 ---
 

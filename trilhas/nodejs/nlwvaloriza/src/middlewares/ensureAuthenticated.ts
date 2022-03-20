@@ -7,7 +7,7 @@ interface IEnsureAuthenticated{
 }
 
 export function ensureAuthenticated(req: Request, res: Response, next: NextFunction){
-    //receber o token
+    //receber  o token
     const authToken = req.headers.authorization;
 
     //validar se o authToken está preenchido
