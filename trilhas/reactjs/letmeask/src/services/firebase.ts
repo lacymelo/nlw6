@@ -25,5 +25,5 @@ const auth = getAuth(firebase)
 // Get a reference to the database service
 const database = getDatabase(firebase)
  
-export { auth, database }
+export { auth, database}
 

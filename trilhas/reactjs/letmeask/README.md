@@ -20,16 +20,6 @@
 ---
 
 <h2 align="left">
-    🛠️ Biblioteca para navegação de rotas
-</h2>
-
-<h3 align="justify" >
-    - yarn add react-router-dom
-</h3>
-
----
-
-<h2 align="left">
     🛠️ Biblioteca do Firebase
 </h2>
 
